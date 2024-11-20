@@ -17,7 +17,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24">Anime Crud</TextBlock>
-        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="AnimeDataGrid" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="AnimeDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" 
+                  SelectedItem="{Binding SelectedAnime, Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="*"/>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="*"/>
@@ -26,8 +27,8 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Modifier" Click="Update_Button" Tag="{Binding ID}" Margin="5,0"/>
-                                <Button Content="Supprimer" Click="Delete_Button" Tag="{Binding ID}" Margin="5,0"/>
+                                <Button Content="Modifier" Click="Update_Button" Tag="{Binding }" Margin="5,0"/>
+                                <Button Content="Supprimer" Click="Delete_Button" Tag="{Binding }" Margin="5,0"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -36,9 +37,9 @@
         </DataGrid>
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Center">
             <TextBlock Text="Nom :" Margin="5"/>
-            <TextBox Name="NomTextBox" Width="200" Margin="5"/>
+            <TextBox Name="NomTextBox" Width="200" Margin="5" Text="{Binding SelectedAnime.Nom, Mode=TwoWay}"/>
             <TextBlock Text="Acronyme :" Margin="5"/>
-            <TextBox Name="AcronymeTextBox" Width="200" Margin="5"/>
+            <TextBox Name="AcronymeTextBox" Width="200" Margin="5" Text="{Binding SelectedAnime.Acronyme, Mode=TwoWay}"/>
             <Button Content="Ajouter" Click="Add_Button" Width="200" Margin="5"/>
         </StackPanel>
     </Grid>

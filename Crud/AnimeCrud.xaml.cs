@@ -4,13 +4,13 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Documents;
+using System.Windows.Controls;
 
 namespace WPF_.Net.Crud
 {
     public partial class AnimeCrud : Window
     {
-        public ObservableCollection<AnimeData> Animes { get; set; }
+        public ObservableCollection<AnimeType> Animes { get; set; }
 
         public AnimeCrud()
         {
@@ -18,28 +18,23 @@ namespace WPF_.Net.Crud
             InitializeDataAsync();
         }
 
-        public class AnimeData
-        {
-            public int ID { get; set; }
-            public string Nom { get; set; }
-            public string Acronyme { get; set; }
-        }
         private async Task InitializeDataAsync()
         {
-            List<AnimeData> animeDatas = await LoadData();
-            Animes = new ObservableCollection<AnimeData>(animeDatas);
+            List<AnimeType> animeDatas = await LoadData();
+            Animes = new ObservableCollection<AnimeType>(animeDatas);
             AnimeDataGrid.ItemsSource = Animes;
         }
-        private async Task<List<AnimeData>> LoadData()
+
+        private async Task<List<AnimeType>> LoadData()
         {
             using (HttpClient client = new HttpClient())
             {
                 var response = await client.GetAsync("https://localhost:44304/api/anime/GetAnime");
                 response.EnsureSuccessStatusCode();
-                
+
                 if (response.IsSuccessStatusCode)
-                { 
-                    return await response.Content.ReadFromJsonAsync<List<AnimeData>>();
+                {
+                    return await response.Content.ReadFromJsonAsync<List<AnimeType>>();
                 }
                 else
                 {
@@ -50,17 +45,76 @@ namespace WPF_.Net.Crud
 
         private async void Add_Button(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var newAnime = new AnimeType
+            {
+                Nom = NomTextBox.Text,
+                Acronyme = AcronymeTextBox.Text
+            };
+
+            using (HttpClient client = new HttpClient())
+            {
+                var response = await client.PostAsJsonAsync("https://localhost:44304/api/Anime/InsertAnime", newAnime);
+                response.EnsureSuccessStatusCode();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Refresh the data
+                    List<AnimeType> animeDatas = await LoadData();
+                    Animes.Clear();
+                    foreach (var anime in animeDatas)
+                    {
+                        Animes.Add(anime);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error Code: " + response.StatusCode);
+                }
+            }
         }
 
-        private void Update_Button(object sender, RoutedEventArgs e)
+        private async void Update_Button(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var ButtonUpdate = sender as Button;
+            var selectedAnime = ButtonUpdate?.Tag as AnimeType;
+
+            if (selectedAnime != null)
+            {
+                var editWindow = new EditAnimeWindow(selectedAnime.ID);
+                editWindow.DataUpdated += async (s, args) =>
+                {
+                    List<AnimeType> animeDatas = await LoadData();
+                    Animes.Clear();
+                    foreach (var anime in animeDatas)
+                    {
+                        Animes.Add(anime);
+                    }
+                };
+
+                editWindow.ShowDialog();
+            }
         }
 
         private void Delete_Button(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var ButtonDelete = sender as Button;
+            var selectedAnime = ButtonDelete?.Tag as AnimeType;
+            
+            using (HttpClient client = new HttpClient())
+            {
+                var response = client.DeleteAsync("https://localhost:44304/api/Anime/DeleteAnime?Id=" + selectedAnime.ID).Result;
+                response.EnsureSuccessStatusCode();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Animes.Remove(selectedAnime);
+                }
+                else
+                {
+                    MessageBox.Show("Error Code: " + response.StatusCode);
+                }
+            }
+            
         }
     }
 }
