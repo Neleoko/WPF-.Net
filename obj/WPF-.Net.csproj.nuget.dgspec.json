@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Neleoko\\Desktop\\M1 MS2D\\.Net\\Projet 1\\WPF-.Net\\WPF-.Net.csproj": {}
+    "C:\\Users\\addae\\Desktop\\M1MS2D\\Valentin\\.Net\\WPF-.Net\\WPF-.Net.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Neleoko\\Desktop\\M1 MS2D\\.Net\\Projet 1\\WPF-.Net\\WPF-.Net.csproj": {
+    "C:\\Users\\addae\\Desktop\\M1MS2D\\Valentin\\.Net\\WPF-.Net\\WPF-.Net.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Neleoko\\Desktop\\M1 MS2D\\.Net\\Projet 1\\WPF-.Net\\WPF-.Net.csproj",
+        "projectUniqueName": "C:\\Users\\addae\\Desktop\\M1MS2D\\Valentin\\.Net\\WPF-.Net\\WPF-.Net.csproj",
         "projectName": "WPF-.Net",
-        "projectPath": "C:\\Users\\Neleoko\\Desktop\\M1 MS2D\\.Net\\Projet 1\\WPF-.Net\\WPF-.Net.csproj",
-        "packagesPath": "C:\\Users\\Neleoko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Neleoko\\Desktop\\M1 MS2D\\.Net\\Projet 1\\WPF-.Net\\obj\\",
+        "projectPath": "C:\\Users\\addae\\Desktop\\M1MS2D\\Valentin\\.Net\\WPF-.Net\\WPF-.Net.csproj",
+        "packagesPath": "C:\\Users\\addae\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\addae\\Desktop\\M1MS2D\\Valentin\\.Net\\WPF-.Net\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Neleoko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\addae\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -63,7 +64,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
