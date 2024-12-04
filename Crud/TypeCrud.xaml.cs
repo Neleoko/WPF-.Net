@@ -13,7 +13,7 @@ public partial class TypeCrud : Window
         InitializeComponent();
         InitializeDataAsync();
     }
-    
+
     public ObservableCollection<TypeType> Types { get; set; }
 
     private async Task InitializeDataAsync()
@@ -25,7 +25,7 @@ public partial class TypeCrud : Window
 
     private async Task<List<TypeType>> LoadData()
     {
-        using (HttpClient client = new HttpClient())
+        using (var client = new HttpClient())
         {
             var response = await client.GetAsync("https://localhost:44304/api/Type/GetType");
             response.EnsureSuccessStatusCode();
@@ -38,12 +38,18 @@ public partial class TypeCrud : Window
 
     private async void Add_Button(object sender, RoutedEventArgs e)
     {
+        if (NomTextBox.Text == "")
+        {
+            MessageBox.Show("Veuillez remplir le champ Nom");
+            return;
+        }
+
         var newType = new TypeType
         {
-            Nom = NomTextBox.Text,
+            Nom = NomTextBox.Text
         };
 
-        using (HttpClient client = new HttpClient())
+        using (var client = new HttpClient())
         {
             var response = await client.PostAsJsonAsync("https://localhost:44304/api/Type/InsertType", newType);
             response.EnsureSuccessStatusCode();
@@ -70,7 +76,7 @@ public partial class TypeCrud : Window
 
         if (selectedType != null)
         {
-            var editWindow = new EditAnimeWindow(selectedType.ID);
+            var editWindow = new EditTypeWindow(selectedType.ID);
             editWindow.DataUpdated += async (s, args) =>
             {
                 var typeDatas = await LoadData();
@@ -87,7 +93,7 @@ public partial class TypeCrud : Window
         var ButtonDelete = sender as Button;
         var selectedType = ButtonDelete?.Tag as TypeType;
 
-        using (HttpClient client = new HttpClient())
+        using (var client = new HttpClient())
         {
             var response = client.DeleteAsync("https://localhost:44304/api/Type/DeleteType?Id=" + selectedType.ID)
                 .Result;

@@ -4,11 +4,11 @@
         Title="Edit Anime" Height="200" Width="300">
     <Grid>
         <StackPanel Margin="10">
-            <TextBlock Text="Nom:" Margin="5"/>
-            <TextBox Name="NomTextBox" Width="250" Margin="5"/>
-            <TextBlock Text="Acronyme:" Margin="5"/>
-            <TextBox Name="AcronymeTextBox" Width="250" Margin="5"/>
-            <Button Content="Save" Click="Save_Button" Width="250" Margin="5"/>
+            <TextBlock Text="Nom:" Margin="5" />
+            <TextBox Name="NomTextBox" Width="250" Margin="5" />
+            <TextBlock Text="Acronyme:" Margin="5" />
+            <TextBox Name="AcronymeTextBox" Width="250" Margin="5" />
+            <Button Content="Save" Click="Save_Button" Width="250" Margin="5" />
         </StackPanel>
     </Grid>
 </Window>
