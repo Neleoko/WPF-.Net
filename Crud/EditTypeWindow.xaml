@@ -4,12 +4,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="EditTypeWindow" Height="450" Width="800">
+        Title="Edit Type" Height="200" Width="300" Background="#0d1b2a">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
         <StackPanel Margin="10">
-            <TextBlock Text="Nom:" Margin="5" />
+            <TextBlock Text="Nom:" Margin="5" Foreground="White" />
             <TextBox Name="NomTextBox" Width="250" Margin="5" />
-            <Button Content="Save" Click="Save_Button" Width="250" Margin="5" />
+            <Button Content="Save" Click="Save_Button" Width="250" Margin="5" Style="{StaticResource RoundedButtonStyle}" />
         </StackPanel>
     </Grid>
 </Window>
